@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">TheMovieClicker</string>
     <string name="api_key">826bf9ee8d59509b314cd6cb97b12118</string>
+    <string name="poster_image_content_desc">This is the poster of the movie</string>
 </resources>

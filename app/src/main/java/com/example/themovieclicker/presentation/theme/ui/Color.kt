@@ -1,4 +1,4 @@
-package com.example.themovieclicker.ui.theme
+package com.example.themovieclicker.presentation.theme.ui
 
 import androidx.compose.ui.graphics.Color
 

@@ -2,7 +2,7 @@ package com.example.themovieclicker.data.local.model
 
 import androidx.room.Entity
 
-@Entity(tableName = "movie_cache",primaryKeys = [("id")])
+@Entity(tableName = "movie_cache", primaryKeys = [("id")])
 data class MovieCacheEntity(
     val id: Int,
     val title: String,

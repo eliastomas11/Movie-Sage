@@ -1,5 +1,6 @@
 package com.example.themovieclicker.data.local
 
+import com.example.themovieclicker.data.local.model.FavoriteMovieEntity
 import com.example.themovieclicker.data.model.MovieDto
 import kotlinx.coroutines.flow.Flow
 
@@ -7,9 +8,14 @@ interface LocalSource {
 
     fun getMovies(): Flow<List<MovieDto>>
 
-    fun getMovieById(id: Int): MovieDto
+    fun getFavoritesMovies(): Flow<List<MovieDto>>
 
-    fun saveMovieToFavorites(movie: MovieDto): Int
+    suspend fun getMovieById(id: Int): MovieDto
 
-    fun saveMovies(movies: List<MovieDto>)
+    suspend fun saveMovieToFavorites(movie: MovieDto): Long
+
+    suspend fun saveMovies(movies: List<MovieDto>)
+    suspend fun isEmpty(): Boolean
+
+    suspend fun deleteMovieFromFavorite(movie: MovieDto)
 }

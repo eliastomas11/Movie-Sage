@@ -8,13 +8,17 @@ import com.example.themovieclicker.data.remote.model.MovieRemoteResponse
 import com.example.themovieclicker.data.remote.model.MovieResult
 import com.example.themovieclicker.domain.MovieModel
 
-fun MovieResult.toDto(): MovieDto = MovieDto(
-    id = this.id,
-    title = this.title,
-    imageUrl = this.poster_path,
-    overview = this.overview,
-    score = this.vote_average,
-)
+private const val IMAGE_URL = "https://image.tmdb.org/t/p/original"
+
+fun MovieResult.toDto(): MovieDto =
+    MovieDto(
+        id = this.id,
+        title = this.title,
+        imageUrl = "$IMAGE_URL${this.poster_path}",
+        overview = this.overview,
+        score = this.vote_average,
+    )
+
 
 fun MovieDto.toDomain(): MovieModel =
     MovieModel(
@@ -51,3 +55,18 @@ fun MovieCacheEntity.toDto(): MovieDto = MovieDto(
     score = this.score
 )
 
+fun MovieModel.toDto(): MovieDto = MovieDto(
+    id = this.id,
+    title = this.title,
+    overview = this.overview,
+    imageUrl = this.imageUrl,
+    score = this.score
+)
+
+fun FavoriteMovieEntity.toDto(): MovieDto = MovieDto(
+    id = this.id,
+    title = this.title,
+    overview = this.overview,
+    imageUrl = this.imageUrl,
+    score = this.score
+)
