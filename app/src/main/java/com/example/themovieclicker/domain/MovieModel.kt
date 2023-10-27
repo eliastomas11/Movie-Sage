@@ -1,5 +1,3 @@
 package com.example.themovieclicker.domain
 
-class MovieModel {
-
-}
+data class MovieModel(val id: Int, val title: String,val overview: String,val imageUrl: String,val score: Double)

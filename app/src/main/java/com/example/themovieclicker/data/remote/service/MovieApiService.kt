@@ -8,6 +8,6 @@ import retrofit2.http.Query
 
 interface MovieApiService {
 
-    @GET("movie/popular?language=en-US&sort_by=popularity.desc")
+    @GET("movie/popular")
     suspend fun getMoviesByPopularity(@Query("page") page: Int) : Response<MovieRemoteResponse>
 }

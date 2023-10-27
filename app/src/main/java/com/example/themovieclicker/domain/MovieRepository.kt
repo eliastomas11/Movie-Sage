@@ -6,4 +6,5 @@ import kotlinx.coroutines.flow.Flow
 interface MovieRepository {
 
     fun getMovies(page: Int): Flow<List<MovieModel>>
+    fun saveMovieToFavorites(movie: MovieModel) : Int
 }

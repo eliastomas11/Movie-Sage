@@ -1,9 +1,10 @@
 package com.example.themovieclicker.data.local.model
 
 import androidx.room.Entity
+import androidx.room.PrimaryKey
 
-@Entity(tableName = "movie_cache",primaryKeys = [("id")])
-data class MovieCacheEntity(
+@Entity(tableName = "favorite_movie", primaryKeys = [("id")])
+data class FavoriteMovieEntity(
     val id: Int,
     val title: String,
     val overview: String,

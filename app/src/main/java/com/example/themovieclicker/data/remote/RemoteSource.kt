@@ -4,5 +4,5 @@ import com.example.themovieclicker.data.model.MovieDto
 import kotlinx.coroutines.flow.Flow
 
 interface RemoteSource {
-    fun getMovies() : Flow<List<MovieDto>>
+    suspend fun getMovies() : List<MovieDto>
 }
