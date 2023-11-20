@@ -18,4 +18,7 @@ interface LocalSource {
     suspend fun isEmpty(): Boolean
 
     suspend fun deleteMovieFromFavorite(movie: MovieDto)
+    suspend fun refresh()
+
+    suspend fun isMovieFavorite(movieId: Int): Int
 }

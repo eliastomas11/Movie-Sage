@@ -17,6 +17,8 @@ fun MovieResult.toDto(): MovieDto =
         imageUrl = "$IMAGE_URL${this.poster_path}",
         overview = this.overview,
         score = this.vote_average,
+        releaseDate = this.release_date,
+        originalTitle = this.original_title
     )
 
 
@@ -26,7 +28,9 @@ fun MovieDto.toDomain(): MovieModel =
         title = this.title,
         overview = this.overview,
         imageUrl = this.imageUrl,
-        score = this.score
+        score = this.score,
+        releaseDate = this.releaseDate,
+        originalTitle = this.originalTitle
     )
 
 fun MovieDto.toLocalCache(): MovieCacheEntity =
@@ -35,7 +39,9 @@ fun MovieDto.toLocalCache(): MovieCacheEntity =
         title = this.title,
         overview = this.overview,
         imageUrl = this.imageUrl,
-        score = this.score
+        score = this.score,
+        releaseDate = this.releaseDate,
+        originalTitle = this.originalTitle
     )
 
 fun MovieDto.toLocalFavorite(): FavoriteMovieEntity =
@@ -44,7 +50,9 @@ fun MovieDto.toLocalFavorite(): FavoriteMovieEntity =
         title = this.title,
         overview = this.overview,
         imageUrl = this.imageUrl,
-        score = this.score
+        score = this.score,
+        releaseDate = this.releaseDate,
+        originalTitle = this.originalTitle
     )
 
 fun MovieCacheEntity.toDto(): MovieDto = MovieDto(
@@ -52,7 +60,9 @@ fun MovieCacheEntity.toDto(): MovieDto = MovieDto(
     title = this.title,
     overview = this.overview,
     imageUrl = this.imageUrl,
-    score = this.score
+    score = this.score,
+    releaseDate = this.releaseDate,
+    originalTitle = this.originalTitle
 )
 
 fun MovieModel.toDto(): MovieDto = MovieDto(
@@ -60,7 +70,9 @@ fun MovieModel.toDto(): MovieDto = MovieDto(
     title = this.title,
     overview = this.overview,
     imageUrl = this.imageUrl,
-    score = this.score
+    score = this.score,
+    releaseDate = this.releaseDate,
+    originalTitle = this.originalTitle
 )
 
 fun FavoriteMovieEntity.toDto(): MovieDto = MovieDto(
@@ -68,5 +80,7 @@ fun FavoriteMovieEntity.toDto(): MovieDto = MovieDto(
     title = this.title,
     overview = this.overview,
     imageUrl = this.imageUrl,
-    score = this.score
+    score = this.score,
+    releaseDate = this.releaseDate,
+    originalTitle = this.originalTitle
 )

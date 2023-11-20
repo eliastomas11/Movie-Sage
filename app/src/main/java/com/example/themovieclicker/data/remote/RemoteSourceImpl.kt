@@ -12,12 +12,12 @@ class RemoteSourceImpl @Inject constructor(private val apiService: MovieApiServi
     override suspend fun getMovies(page: Int): List<MovieDto> {
         val moviesResponse = apiService.getMoviesByPopularity(page)
         if (moviesResponse.isSuccessful) {
-            moviesResponse.body()?.let { moviesResponse ->
+            return moviesResponse.body()?.let { moviesResponse ->
                 return@let moviesResponse.movieResults.map { it.toDto() }
-            }
+            }?: emptyList() //Arreglar
         }
         Timber.e("Error: ${moviesResponse.code()}")
-        throw CustomException.ApiException(moviesResponse.code())
+        throw CustomException.ApiException(moviesResponse.code(), "There was an error")
 
     }
 }

@@ -1,74 +1,125 @@
 package com.example.themovieclicker.presentation.theme
 
-import android.content.Context
 import android.os.Bundle
-import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.activity.viewModels
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.grid.GridCells
-import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
-import androidx.compose.foundation.lazy.grid.items
-import androidx.compose.foundation.lazy.grid.rememberLazyGridState
-import androidx.compose.material3.CardDefaults
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
+import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.CompositionContext
-import androidx.compose.runtime.collectAsState
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.remember
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.graphics.Brush
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.TileMode
+import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.lifecycle.Lifecycle
-import androidx.lifecycle.lifecycleScope
-import androidx.lifecycle.repeatOnLifecycle
-import com.example.themovieclicker.domain.MovieModel
-import com.example.themovieclicker.presentation.theme.home.MovieItem
-import com.example.themovieclicker.presentation.theme.home.MovieViewModel
-import com.example.themovieclicker.presentation.theme.home.components.DefaultCardItem
+import coil.compose.AsyncImage
+import com.example.themovieclicker.R
+import com.example.themovieclicker.presentation.theme.detail.components.DetailInfoItem
+import com.example.themovieclicker.presentation.theme.home.components.MovieOhApp
+import com.example.themovieclicker.presentation.theme.ui.ClickOhBackgruond
+import com.example.themovieclicker.presentation.theme.ui.ClickOhDetailStartGradient
 import com.example.themovieclicker.presentation.theme.ui.TheMovieClickerTheme
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
-    private val viewModel by viewModels<MovieViewModel>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         setContent {
             TheMovieClickerTheme {
-                val movieUiState by remember { viewModel.uiState }.collectAsState()
-                HomeScreen(movieList = movieUiState.moviesList)
+                Surface {
+                    MovieOhApp()
+                }
+                //DetailsTest(modifier = Modifier.fillMaxSize())
+            }
+        }
+    }
+
+    @Preview
+    @Composable
+    fun DetailsTest(modifier: Modifier = Modifier) {
+        val swipeableState = rememberScrollState()
+        Box(modifier = Modifier.fillMaxSize()) {
+            AsyncImage(
+                model = "https://th.bing.com/th/id/OIP.vnGOaFJhenpNROeLpVEi1gHaJ4?pid=ImgDet&rs=1",
+                contentDescription = stringResource(id = R.string.poster_image_content_desc),
+                contentScale = ContentScale.Crop,
+                modifier = Modifier.matchParentSize()
+            )
+            Box(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .background(
+                        brush = Brush.verticalGradient(
+                            colors = listOf(
+                                ClickOhDetailStartGradient,
+                                ClickOhBackgruond
+                            ),
+                            startY = 300f
+                        )
+                    )
+            )
+        }
+        LazyColumn(modifier = Modifier.fillMaxSize()) {
+            item {
+                Spacer(
+                    modifier = Modifier
+                        .fillParentMaxSize(0.9f)
+                )
+            }
+            item {
+                Box(
+                    modifier = Modifier
+                        .fillParentMaxSize()
+                        .background(
+                            brush = Brush.verticalGradient(
+                                colors = listOf(
+                                    ClickOhDetailStartGradient,
+                                    ClickOhBackgruond
+                                ),
+                                startY = 0f
+                            )
+                        )
+                ) {
+                    Column(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .align(Alignment.TopStart)
+                    ) {
+                        Text(text = "Title: Texto 1 ")
+                        Text(text = "Title: Texto 1 ")
+                        Text(text = "Title: Texto 1 ")
+                        Text(text = "Title: Texto 1 ")
+                    }
+                }
             }
 
         }
-
     }
+
 }
 
 
-@Composable
-fun HomeScreen(movieList: List<MovieModel>) {
-    LazyVerticalGrid(
-        columns = GridCells.Fixed(2),
-        verticalArrangement = Arrangement.spacedBy(16.dp),
-        horizontalArrangement = Arrangement.spacedBy(16.dp),
-        content = {
-            items(movieList) { movie ->
-                val context = LocalContext.current
-                MovieItem(movie = movie)
-                DefaultCardItem(movie = movie, onClick = { showToast(context)} )
-            }
-        })
-}
 
 
-fun showToast(context: Context){
-    Toast.makeText(context, "Hello", Toast.LENGTH_SHORT).show()
-}
+

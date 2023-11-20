@@ -40,11 +40,19 @@ class LocalSourceImpl @Inject constructor(
     }
 
     override suspend fun isEmpty(): Boolean {
-        return movieCacheDao.itemsCount() > 0
+        return movieCacheDao.itemsCount() == 0
     }
 
     override suspend fun deleteMovieFromFavorite(movie: MovieDto) {
         favoriteMovieDao.deleteMovie(movie.toLocalFavorite())
+    }
+
+    override suspend fun refresh() {
+        movieCacheDao.deleteAll()
+    }
+
+    override suspend fun isMovieFavorite(movieId: Int): Int {
+        return favoriteMovieDao.isMovieFavorite(movieId)
     }
 }
 

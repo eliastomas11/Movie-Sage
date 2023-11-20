@@ -6,6 +6,7 @@ import android.net.Network
 import android.net.NetworkCapabilities
 import android.net.NetworkRequest
 import android.os.Build
+import android.util.Log
 import androidx.core.content.getSystemService
 import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.flow.Flow
@@ -14,9 +15,9 @@ import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-class NetworkObserverImpl @Inject constructor(private val context: Context) : NetworkObserver {
+class NetworkObserverImpl @Inject constructor(context: Context) : NetworkObserver {
 
-    val connectivityManager =
+    private val connectivityManager =
         context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
 
     override fun checkForInternetConnection(): Flow<NetworkObserver.Status> = callbackFlow {
@@ -28,21 +29,15 @@ class NetworkObserverImpl @Inject constructor(private val context: Context) : Ne
 
         val callback = object : ConnectivityManager.NetworkCallback() {
             override fun onAvailable(network: android.net.Network) {
-                super.onAvailable(network)
+                Log.d("NETWORK OBSERVER", "onAvailable")
                 launch { send(NetworkObserver.Status.Available) }
             }
 
             override fun onUnavailable() {
-                super.onUnavailable()
+                Log.d("NETWORK OBSERVER", "Unavailable")
                 launch { send(NetworkObserver.Status.Unavailable) }
-
             }
 
-            override fun onLost(network: Network) {
-                super.onLost(network)
-                launch { send(NetworkObserver.Status.Lost) }
-
-            }
         }
         connectivityManager.registerNetworkCallback(networkRequest, callback)
         awaitClose {

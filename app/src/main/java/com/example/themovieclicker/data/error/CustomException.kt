@@ -11,7 +11,7 @@ sealed class CustomException(message: String? = null) : Exception(message) {
         return when (this) {
             is NoNetworkConnection -> CustomErrors.NoInternetConnection
             is ServerError -> CustomErrors.ServerError
-            is ApiException -> CustomErrors.mapToApiError(this.code,this.msg)
+            is ApiException -> CustomErrors.mapToApiError(this.code, this.msg)
         }
     }
 }

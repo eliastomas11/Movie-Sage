@@ -19,12 +19,14 @@ import javax.inject.Singleton
 @InstallIn(SingletonComponent::class)
 object LocalSourceModule {
 
-     val DB_NAME = "movie_database"
+    val DB_NAME = "movie_database"
 
     @Provides
     @Singleton
     fun provideDatabase(@ApplicationContext context: Context): MovieDatabase {
-        return Room.databaseBuilder(context, MovieDatabase::class.java, DB_NAME).build()
+        return Room.databaseBuilder(context, MovieDatabase::class.java, DB_NAME)
+            .fallbackToDestructiveMigration()
+            .build()
     }
 
     @Provides

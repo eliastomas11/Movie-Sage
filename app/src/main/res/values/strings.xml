@@ -1,5 +1,23 @@
 <resources>
     <string name="app_name">TheMovieClicker</string>
-    <string name="api_key">826bf9ee8d59509b314cd6cb97b12118</string>
+    <string name="api_key">426288c41916e15936039138bcdf6890</string>
     <string name="poster_image_content_desc">This is the poster of the movie</string>
+    <string name="movieoh_logo">MovieOh Logo Image</string>
+    <string name="average_placeholder">%1$s / 10</string>
+    <string name="error_message_accesibility">There was an error image</string>
+    <string name="movieid_not_found_msg">MovieId not found</string>
+    <string name="filter_button">Filter button</string>
+    <string name="filter_category">Favorites</string>
+    <string name="detail_popup_accept">DETAILS</string>
+    <string name="dismiss_poup">CANCEL</string>
+    <string name="filter_by_favorite_content_desc">Filter by favorite</string>
+    <string name="filter_dissmiss_content_desc">Clear filter by favorites</string>
+    <string name="movie_error_screen_message">Movie not Found, sorry for the inconvenience</string>
+    <string name="filter_movies_icon_desc">Filter movies button</string>
+    <string name="movie_poster_content_desc">Poster of the movie</string>
+    <string name="star_content_desc">star representing the rating</string>
+    <string name="cancel_pop_up_button_content_desc">Cancel pop up button</string>
+    <string name="favorite_unchecked_content_desc">Favorite unchecked</string>
+    <string name="favorite_checked_content_desc">Favorite checked</string>
+    <string name="button_to_navigate_back_content_desc">Button to navigate back</string>
 </resources>

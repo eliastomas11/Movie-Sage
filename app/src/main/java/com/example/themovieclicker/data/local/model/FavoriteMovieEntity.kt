@@ -10,4 +10,6 @@ data class FavoriteMovieEntity(
     val overview: String,
     val imageUrl: String,
     val score: Double,
+    val releaseDate: String,
+    val originalTitle: String
 )

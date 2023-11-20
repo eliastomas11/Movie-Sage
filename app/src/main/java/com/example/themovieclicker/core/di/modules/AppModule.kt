@@ -2,7 +2,6 @@ package com.example.themovieclicker.core.di.modules
 
 import com.example.themovieclicker.core.di.modules.qualifiers.DispatcherDefault
 import com.example.themovieclicker.core.di.modules.qualifiers.DispatcherIO
-import com.example.themovieclicker.core.di.modules.qualifiers.DispatcherMain
 import com.example.themovieclicker.data.local.LocalSource
 import com.example.themovieclicker.data.remote.RemoteSource
 import com.example.themovieclicker.data.repository.MoviesRepositoryImpl

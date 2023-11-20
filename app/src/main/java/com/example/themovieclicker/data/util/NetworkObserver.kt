@@ -8,6 +8,5 @@ interface NetworkObserver {
     enum class Status{
         Available,
         Unavailable,
-        Lost;
     }
 }

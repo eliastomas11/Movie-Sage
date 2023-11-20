@@ -15,5 +15,8 @@ interface MovieRepository {
 
     suspend fun deleteFromFavorite(movie: MovieModel)
 
+    suspend fun refresh()
+    suspend fun isMovieFavorite(movieId: Int): Boolean
+
 
 }

@@ -20,27 +20,28 @@ import retrofit2.converter.gson.GsonConverterFactory
 import javax.inject.Singleton
 
 
-
 @Module
 @InstallIn(SingletonComponent::class)
 object RemoteModule {
 
     private const val BASE_URL = "https://api.themoviedb.org/3/"
+
     @MovieRemoteInterceptor
     @Provides
-    fun provideMoviesInterceptor(@ApplicationContext context: Context): Interceptor{
+    fun provideMoviesInterceptor(@ApplicationContext context: Context): Interceptor {
         return MovieServiceInterceptor(context)
     }
 
     @Provides
-    fun provideNetworkClient(@MovieRemoteInterceptor movieInterceptor: Interceptor): OkHttpClient{
+    fun provideNetworkClient(@MovieRemoteInterceptor movieInterceptor: Interceptor): OkHttpClient {
         return OkHttpClient.Builder().addInterceptor(movieInterceptor).build()
     }
 
     @Provides
     @Singleton
-    fun provideNetworkService(client: OkHttpClient): Retrofit{
-        return Retrofit.Builder().client(client).baseUrl(BASE_URL).addConverterFactory(GsonConverterFactory.create()).build()
+    fun provideNetworkService(client: OkHttpClient): Retrofit {
+        return Retrofit.Builder().client(client).baseUrl(BASE_URL)
+            .addConverterFactory(GsonConverterFactory.create()).build()
     }
 
     @Provides
