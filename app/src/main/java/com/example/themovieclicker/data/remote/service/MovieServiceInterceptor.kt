@@ -7,7 +7,7 @@ import okhttp3.Interceptor
 import okhttp3.Response
 import javax.inject.Inject
 
-class MovieServiceInterceptor @Inject constructor(context: Context) : Interceptor {
+class MovieServiceInterceptor @Inject constructor() : Interceptor {
 
     private val apiKey = BuildConfig.API_KEY
 

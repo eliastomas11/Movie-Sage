@@ -21,7 +21,7 @@ class FavoriteMovieDaoTest {
     @get:Rule
     val hiltRule = HiltAndroidRule(this)
 
-    private lateinit var movieFavoriteDao: FavoriteMovieDao
+    lateinit var movieFavoriteDao: FavoriteMovieDao
 
     @Inject
     @Named("test_db")

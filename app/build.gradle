@@ -22,13 +22,15 @@ android {
             useSupportLibrary true
         }
 
+        Properties properties = new Properties()
+        properties.load(project.rootProject.file("local.properties").newDataInputStream())
+        buildConfigField "String", "API_KEY", "\"${properties.getProperty("API_KEY")}\""
+
+
     }
 
     buildTypes {
-        debug{
-            buildConfigField "String", "API_KEY", "\"${findProperty('api_key')}\""
 
-        }
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'

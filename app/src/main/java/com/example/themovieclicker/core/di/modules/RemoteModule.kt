@@ -28,8 +28,8 @@ object RemoteModule {
 
     @MovieRemoteInterceptor
     @Provides
-    fun provideMoviesInterceptor(@ApplicationContext context: Context): Interceptor {
-        return MovieServiceInterceptor(context)
+    fun provideMoviesInterceptor(): Interceptor {
+        return MovieServiceInterceptor()
     }
 
     @Provides

@@ -39,7 +39,6 @@ class MainActivity : ComponentActivity() {
                 Surface {
                     MovieOhApp()
                 }
-                //DetailsTest(modifier = Modifier.fillMaxSize())
             }
         }
     }
