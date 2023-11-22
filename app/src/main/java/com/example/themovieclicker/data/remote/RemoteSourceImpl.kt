@@ -14,7 +14,7 @@ class RemoteSourceImpl @Inject constructor(private val apiService: MovieApiServi
         if (moviesResponse.isSuccessful) {
             return moviesResponse.body()?.let { moviesResponse ->
                 return@let moviesResponse.movieResults.map { it.toDto() }
-            }?: emptyList() //Arreglar
+            }?: emptyList()
         }
         Timber.e("Error: ${moviesResponse.code()}")
         throw CustomException.ApiException(moviesResponse.code(), "There was an error")

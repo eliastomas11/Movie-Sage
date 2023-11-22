@@ -37,6 +37,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.themovieclicker.domain.FilterCategory
 import com.example.themovieclicker.domain.MovieModel
+import com.example.themovieclicker.presentation.theme.home.FilterBarState
 import com.example.themovieclicker.presentation.theme.home.MoviePopUpState
 import com.example.themovieclicker.presentation.theme.ui.ClickOhBackgruond
 
@@ -72,7 +73,7 @@ fun MovieSuccessScreen(
 }
 
 @Composable
-fun FilterBar(modifier: Modifier, onFilterClick: (FilterCategory) -> Unit,filterState: FilterPillState = FilterPillState(true)) {
+fun FilterBar(modifier: Modifier, onFilterClick: (FilterCategory) -> Unit,filterState: FilterBarState) {
 
     TopAppBar(backgroundColor = ClickOhBackgruond, contentPadding = PaddingValues(4.dp)) {
         Row(
@@ -96,8 +97,6 @@ fun FilterBar(modifier: Modifier, onFilterClick: (FilterCategory) -> Unit,filter
 
 
 }
-
-data class FilterPillState(var selected: Boolean)
 
 
 

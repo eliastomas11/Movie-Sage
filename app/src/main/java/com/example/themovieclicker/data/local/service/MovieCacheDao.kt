@@ -10,7 +10,7 @@ import kotlinx.coroutines.flow.Flow
 @Dao
 interface MovieCacheDao {
 
-    @Query("SELECT COUNT(id) FROM movie_cache")
+    @Query("SELECT COUNT(*) FROM movie_cache")
     fun itemsCount(): Int
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun insertMovie(movie: List<MovieCacheEntity>)

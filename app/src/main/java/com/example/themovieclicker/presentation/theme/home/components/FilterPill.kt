@@ -17,35 +17,33 @@ import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import com.example.themovieclicker.domain.FilterCategory
+import com.example.themovieclicker.presentation.theme.home.FilterBarState
 
 @Composable
 fun FilterPill(
     modifier: Modifier = Modifier,
-    state: FilterPillState,
+    state: FilterBarState,
     category: String,
     onFilterClick: (FilterCategory) -> Unit
 ) {
-
-    val stateModifier: Modifier = Modifier
-        .then(if (state.selected) {
+    var textColor = Color.White
+    var stateModifier = Modifier
+        .background(color = Color.Transparent)
+        .border(
+            width = 1.dp,
+            color = Color.White,
+            shape = RoundedCornerShape(100.dp)
+        )
+        .padding(8.dp)
+        .clickable { onFilterClick(FilterCategory.valueOf(category)) }
+    if (category == state.filterSelected.name) {
+        textColor = Color.Black
+        stateModifier =
             Modifier
                 .background(shape = RoundedCornerShape(100.dp), color = Color.White)
                 .padding(8.dp)
+    }
 
-        } else {
-            Modifier
-                .background(color = Color.Transparent)
-                .border(
-                    width = 1.dp,
-                    color = Color.White,
-                    shape = RoundedCornerShape(100.dp)
-                )
-                .padding(8.dp)
-                .clickable { onFilterClick(FilterCategory.valueOf(category)) }
-        })
-
-
-    val textColor = if (state.selected) Color.Black else Color.White
     Box(
         modifier = stateModifier
     ) {

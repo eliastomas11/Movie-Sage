@@ -23,6 +23,7 @@ fun HomeRoute(viewModel: HomeViewModel = hiltViewModel(), navController: NavCont
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
     val popUpState by viewModel.popUpState
     val refreshState by viewModel.refreshingState
+    val filterBarState by viewModel.filterState
 
     val pullRefreshState = rememberPullRefreshState(
         refreshing = refreshState,
@@ -33,7 +34,8 @@ fun HomeRoute(viewModel: HomeViewModel = hiltViewModel(), navController: NavCont
         topBar = {
             FilterBar(
                 modifier = Modifier.fillMaxWidth(),
-                onFilterClick = { filterCategory -> viewModel.onFilterClick(filterCategory) })
+                onFilterClick = { filterCategory -> viewModel.onFilterClick(filterCategory) },
+                filterState = filterBarState)
         },
         content = {
             HomeScreen(

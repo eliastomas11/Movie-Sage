@@ -32,6 +32,9 @@ class HomeViewModel @Inject constructor(private val repository: MovieRepository)
     var popUpState = mutableStateOf(MoviePopUpState())
         private set
 
+    var filterState = mutableStateOf(FilterBarState())
+        private set
+
     init {
         getMovies()
     }
@@ -53,6 +56,7 @@ class HomeViewModel @Inject constructor(private val repository: MovieRepository)
                 }
             } catch (e: Exception) {
                 Timber.e(e.message)
+                HomeUiState.Error(CustomErrors.UnknownError.message.toString())
             }
         }
 
@@ -80,9 +84,11 @@ class HomeViewModel @Inject constructor(private val repository: MovieRepository)
     fun onFilterClick(filterCategory: FilterCategory){
         when (filterCategory){
             FilterCategory.Popular -> {
+                filterState.value = filterState.value.copy(filterSelected = FilterCategory.Popular)
                 getMovies()
             }
             FilterCategory.Favorites -> {
+                filterState.value = filterState.value.copy(filterSelected = FilterCategory.Favorites)
                 getFavoriteMovies()
             }
         }
@@ -92,7 +98,7 @@ class HomeViewModel @Inject constructor(private val repository: MovieRepository)
         viewModelScope.launch {
             try {
                 _uiState.value = HomeUiState.Loading
-                repository.getFavoritesMovies().collect{ movies ->
+                repository.getFavoritesMovies().collectLatest{ movies ->
                     _uiState.update {
                         HomeUiState.Success(movies)
                     }
@@ -111,6 +117,8 @@ class HomeViewModel @Inject constructor(private val repository: MovieRepository)
     }
 
 }
+
+data class FilterBarState(val filterSelected: FilterCategory = FilterCategory.Popular)
 
 data class MoviePopUpState(val isShowing: Boolean = false, val movie: MovieModel? = null)
 
