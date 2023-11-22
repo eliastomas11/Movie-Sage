@@ -1,6 +1,5 @@
 <resources>
     <string name="app_name">TheMovieClicker</string>
-    <string name="api_key">426288c41916e15936039138bcdf6890</string>
     <string name="poster_image_content_desc">This is the poster of the movie</string>
     <string name="movieoh_logo">MovieOh Logo Image</string>
     <string name="average_placeholder">%1$s / 10</string>

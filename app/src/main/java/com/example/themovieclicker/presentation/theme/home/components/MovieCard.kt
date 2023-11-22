@@ -7,16 +7,12 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.defaultMinSize
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.CardDefaults
-import androidx.compose.material3.Divider
 import androidx.compose.material3.ElevatedCard
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
@@ -30,7 +26,6 @@ import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.res.fontResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.Font
@@ -44,8 +39,8 @@ import coil.compose.AsyncImage
 import coil.request.ImageRequest
 import com.example.themovieclicker.R
 import com.example.themovieclicker.domain.MovieModel
-import com.example.themovieclicker.presentation.theme.ui.ClickOhBackgruond
-import com.example.themovieclicker.presentation.theme.ui.ClickOhOnBackground
+import com.example.themovieclicker.presentation.theme.ui.Background
+import com.example.themovieclicker.presentation.theme.ui.BackgroundWhite
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -53,7 +48,7 @@ fun MovieCard(modifier: Modifier = Modifier, title: String, starsAmount: Int, im
     ElevatedCard(
         modifier = modifier
             .height(300.dp)
-            .background(color = ClickOhBackgruond),
+            .background(color = Background),
         shape = RoundedCornerShape(0.dp),
         onClick = { onClick(movieModel) },
     ) {
@@ -67,7 +62,7 @@ fun MovieCard(modifier: Modifier = Modifier, title: String, starsAmount: Int, im
 
         Box(modifier = Modifier
             .fillMaxSize()
-            .background(color = ClickOhBackgruond)) {
+            .background(color = Background)) {
             AsyncImage(
                 model = imageRequest,
                 contentDescription = stringResource(R.string.movie_poster_content_desc),
@@ -83,7 +78,7 @@ fun MovieCard(modifier: Modifier = Modifier, title: String, starsAmount: Int, im
                         brush = Brush.verticalGradient(
                             colors = listOf(
                                 Color.Transparent,
-                                ClickOhBackgruond
+                                Background
                             ),
                             startY = 100f
                         )
@@ -99,7 +94,7 @@ fun MovieCard(modifier: Modifier = Modifier, title: String, starsAmount: Int, im
             ) {
                 Text(
                     text = title,
-                    color = ClickOhOnBackground,
+                    color = BackgroundWhite,
                     style = MaterialTheme.typography.titleMedium,
                     fontWeight = FontWeight.Light,
                     textAlign = TextAlign.Center,

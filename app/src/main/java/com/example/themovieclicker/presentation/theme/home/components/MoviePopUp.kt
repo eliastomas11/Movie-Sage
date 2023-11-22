@@ -1,9 +1,7 @@
 package com.example.themovieclicker.presentation.theme.home.components
 
-import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
-import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -29,7 +27,6 @@ import androidx.compose.ui.draw.blur
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.TileMode
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
@@ -38,7 +35,6 @@ import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.Dialog
@@ -47,10 +43,9 @@ import coil.compose.AsyncImage
 import com.example.themovieclicker.R
 import com.example.themovieclicker.core.Utils.format
 import com.example.themovieclicker.domain.MovieModel
-import com.example.themovieclicker.presentation.theme.ui.ClickOhAccent
-import com.example.themovieclicker.presentation.theme.ui.ClickOhBackgruond
-import com.example.themovieclicker.presentation.theme.ui.ClickOhOnBackground
-import timber.log.Timber
+import com.example.themovieclicker.presentation.theme.ui.Accent
+import com.example.themovieclicker.presentation.theme.ui.Background
+import com.example.themovieclicker.presentation.theme.ui.BackgroundWhite
 
 
 @Composable
@@ -95,7 +90,7 @@ fun PopUpCard(
     onDismiss: () -> Unit,
 ) {
     Card(
-        colors = CardDefaults.cardColors(containerColor = ClickOhBackgruond),
+        colors = CardDefaults.cardColors(containerColor = Background),
         modifier = modifier.height(400.dp)
     ) {
         Box(modifier = Modifier.fillMaxSize()) {
@@ -114,7 +109,7 @@ fun PopUpCard(
                         brush = Brush.verticalGradient(
                             colors = listOf(
                                 Color.Transparent,
-                                ClickOhBackgruond
+                                Background
                             ),
                             startY = 100f
                         )
@@ -149,7 +144,7 @@ fun PopUpCard(
                 ) {
                     Text(
                         text = title,
-                        color = ClickOhOnBackground,
+                        color = BackgroundWhite,
                         style = MaterialTheme.typography.titleLarge,
                         fontWeight = FontWeight.Bold,
                         letterSpacing = 0.5.sp,
@@ -167,7 +162,7 @@ fun PopUpCard(
                     )
                     Text(
                         text = score.format(),
-                        color = ClickOhOnBackground,
+                        color = BackgroundWhite,
                         fontWeight = FontWeight.Bold,
                         style = MaterialTheme.typography.titleLarge,
                         fontFamily = FontFamily(Font(resId = R.font.bebas_neue)),
@@ -181,8 +176,8 @@ fun PopUpCard(
                         .background(
                             brush = Brush.horizontalGradient(
                                 listOf(
-                                    ClickOhBackgruond,
-                                    ClickOhAccent
+                                    Background,
+                                    Accent
                                 ),
                             )
                         )

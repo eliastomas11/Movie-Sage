@@ -16,7 +16,6 @@ import androidx.compose.material.IconButton
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.outlined.FavoriteBorder
-import androidx.compose.material3.IconToggleButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -31,8 +30,8 @@ import androidx.compose.ui.unit.dp
 import com.example.themovieclicker.R
 import com.example.themovieclicker.domain.MovieModel
 import com.example.themovieclicker.presentation.theme.home.components.starAmountCalculator
-import com.example.themovieclicker.presentation.theme.ui.ClickOhAccent
-import com.example.themovieclicker.presentation.theme.ui.ClickOhOnBackground
+import com.example.themovieclicker.presentation.theme.ui.Accent
+import com.example.themovieclicker.presentation.theme.ui.BackgroundWhite
 
 @OptIn(ExperimentalLayoutApi::class)
 @Composable
@@ -48,7 +47,7 @@ fun DetailInfoItem(
     ) {
         Text(
             text = movie.title,
-            color = ClickOhOnBackground,
+            color = BackgroundWhite,
             style = MaterialTheme.typography.headlineSmall,
             fontWeight = FontWeight.ExtraBold,
             textAlign = TextAlign.Start,
@@ -60,13 +59,13 @@ fun DetailInfoItem(
             if (favoriteState) {
                 Icon(
                     imageVector = Icons.Filled.Favorite,
-                    tint = ClickOhAccent,
+                    tint = Accent,
                     contentDescription = stringResource(R.string.favorite_checked_content_desc)
                 )
             } else {
                 Icon(
                     imageVector = Icons.Outlined.FavoriteBorder,
-                    tint = ClickOhAccent,
+                    tint = Accent,
                     contentDescription = stringResource(R.string.favorite_unchecked_content_desc)
                 )
             }
@@ -93,7 +92,7 @@ fun DetailInfoItem(
     Spacer(modifier = Modifier.height(8.dp))
     Text(
         text = "Release date: ${movie.releaseDate}",
-        color = ClickOhOnBackground,
+        color = BackgroundWhite,
         style = MaterialTheme.typography.bodyLarge,
         fontWeight = FontWeight.Medium,
         modifier = Modifier.padding(8.dp),
@@ -101,7 +100,7 @@ fun DetailInfoItem(
     )
     Text(
         text = movie.overview,
-        color = ClickOhOnBackground,
+        color = BackgroundWhite,
         style = MaterialTheme.typography.bodyLarge,
         fontWeight = FontWeight.Medium,
         modifier = Modifier.padding(8.dp),
