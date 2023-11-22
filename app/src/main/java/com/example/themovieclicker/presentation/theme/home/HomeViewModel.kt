@@ -12,6 +12,7 @@ import com.example.themovieclicker.domain.FilterCategory
 import com.example.themovieclicker.domain.MovieModel
 import com.example.themovieclicker.domain.MovieRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.collectLatest
@@ -68,8 +69,9 @@ class HomeViewModel @Inject constructor(private val repository: MovieRepository)
 
     fun onRefresh() {
         viewModelScope.launch {
-            repository.refresh()
             HomeUiState.Refreshing(true)
+            //delay(2000)
+            repository.refresh()
         }
     }
 

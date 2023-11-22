@@ -24,6 +24,9 @@ import androidx.compose.material.Tab
 import androidx.compose.material.TabRow
 import androidx.compose.material.Text
 import androidx.compose.material.TopAppBar
+import androidx.compose.material.pullrefresh.PullRefreshIndicator
+import androidx.compose.material.pullrefresh.PullRefreshState
+import androidx.compose.material.pullrefresh.pullRefresh
 import androidx.compose.material3.MediumTopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
@@ -39,6 +42,7 @@ import com.example.themovieclicker.domain.FilterCategory
 import com.example.themovieclicker.domain.MovieModel
 import com.example.themovieclicker.presentation.theme.home.FilterBarState
 import com.example.themovieclicker.presentation.theme.home.MoviePopUpState
+import com.example.themovieclicker.presentation.theme.ui.ClickOhAccent
 import com.example.themovieclicker.presentation.theme.ui.ClickOhBackgruond
 
 @OptIn(ExperimentalMaterialApi::class)
@@ -47,6 +51,8 @@ fun MovieSuccessScreen(
     modifier: Modifier = Modifier,
     movieList: List<MovieModel>,
     moviePopUpState: MoviePopUpState,
+    refreshState: PullRefreshState,
+    isRefreshing: Boolean,
     onClick: (movie: MovieModel) -> Unit,
     onDetailAccept: (movieId: Int) -> Unit,
     onDismiss: () -> Unit
@@ -61,12 +67,20 @@ fun MovieSuccessScreen(
 
     Box(modifier = modifier) {
         LazyVerticalGrid(columns = GridCells.Fixed(2),
-            modifier = Modifier.matchParentSize(),
+            modifier = Modifier.matchParentSize().pullRefresh(refreshState),
             content = {
                 items(movieList) { movie ->
                     MovieItem(movie = movie, onClick = onClick)
                 }
             })
+
+        PullRefreshIndicator(
+            refreshing = isRefreshing,
+            state = refreshState,
+            modifier = Modifier.align(Alignment.TopCenter),
+            backgroundColor = ClickOhBackgruond,
+            contentColor = ClickOhAccent
+        )
     }
 
 

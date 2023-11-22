@@ -30,6 +30,7 @@ fun HomeScreen(
     onDetailAccept: (id: Int) -> Unit,
     onDismiss: () -> Unit,
     onMovieClick: (movie: MovieModel) -> Unit,
+    isRefreshingState: Boolean
 ) {
 
     Box(
@@ -37,7 +38,6 @@ fun HomeScreen(
         modifier = Modifier
             .fillMaxSize()
             .padding(paddingValues)
-            .pullRefresh(pullRefreshState)
     ) {
         when (uiState) {
             is HomeUiState.Success -> MovieSuccessScreen(
@@ -47,17 +47,15 @@ fun HomeScreen(
                 onDetailAccept = onDetailAccept,
                 onDismiss = onDismiss,
                 modifier = Modifier.matchParentSize(),
+                refreshState = pullRefreshState,
+                isRefreshing = isRefreshingState
             )
 
             is HomeUiState.Error -> HomeErrorScreen(errorMessage = uiState.message)
 
             is HomeUiState.Loading -> LoadingScreen()
 
-            is HomeUiState.Refreshing -> PullRefreshIndicator(
-                refreshing = uiState.isRefreshing,
-                state = pullRefreshState,
-                modifier = Modifier.align(Alignment.TopCenter)
-            )
+            is HomeUiState.Refreshing -> Unit
         }
     }
 

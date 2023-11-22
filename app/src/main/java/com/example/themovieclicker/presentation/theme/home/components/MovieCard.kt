@@ -62,7 +62,7 @@ fun MovieCard(modifier: Modifier = Modifier, title: String, starsAmount: Int, im
             .data(
                 data = image
             )
-            .crossfade(true)
+            .crossfade(100)
             .build()
 
         Box(modifier = Modifier

@@ -48,7 +48,8 @@ fun HomeRoute(viewModel: HomeViewModel = hiltViewModel(), navController: NavCont
                 },
                 onMovieClick = viewModel::onMovieClicked,
                 popUpState = popUpState,
-                onDismiss = viewModel::onDismiss
+                onDismiss = viewModel::onDismiss,
+                isRefreshingState = refreshState
             )
         }
     )
