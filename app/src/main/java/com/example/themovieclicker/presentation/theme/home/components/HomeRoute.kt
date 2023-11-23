@@ -24,6 +24,7 @@ fun HomeRoute(viewModel: HomeViewModel = hiltViewModel(), navController: NavCont
     val popUpState by viewModel.popUpState
     val refreshState by viewModel.refreshingState
     val filterBarState by viewModel.filterState
+    val bool = true
 
     val pullRefreshState = rememberPullRefreshState(
         refreshing = refreshState,
