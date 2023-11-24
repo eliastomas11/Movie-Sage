@@ -27,7 +27,7 @@ android {
             properties.load(project.rootProject.file("keystore.properties").newDataInputStream())
             buildConfigField "String", "API_KEY", "\"${properties.getProperty("API_KEY")}\""
         }else{
-            buildConfigField "String", "API_KEY", "\""example"\""
+            buildConfigField "String", "API_KEY", "\"${properties.getProperty("API_KEY")}\""
         }
 
     }
